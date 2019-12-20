@@ -1,0 +1,107 @@
+<div *ngIf="beach" class="container">
+  <h2 class="my-4">
+    <a [routerLink]="['../../']">
+      <i class="fas fa-arrow-circle-left"></i>
+    </a>
+    Modifica {{beach.name}}
+  </h2>
+
+  <div class="row">
+    <div class="col-md-8">
+      <form class="card p-3" [formGroup]="beachForm" (ngSubmit)="editBeach()">
+
+        <!-- Name and province -->
+        <div class="form-row">
+          <!-- Example of form element written by hand-->
+          <div class="form-group col-md-4">
+            <label for="name">Nome</label>
+            <input class="form-control" type="text" id="name" formControlName="name" placeholder="Inserisci un nome"
+                   maxlength="30"/>
+            <span *ngIf="submitted && beachForm.controls.name && beachForm.controls.name.errors" class="text-danger">
+              Il nome è obbligatorio, max 30 caratteri.
+            </span>
+          </div>
+
+          <!-- Custom element who takes some parameters and renders the component required -->
+          <app-form-input
+            class="form-group col-md-4" type="text" [group]="beachForm" label="Città" attributeName="city"
+            placeholder="Città" [maxLength]="40" [submitted]="submitted"
+            invalidFeedback="Campo richiesto, max 2 caratteri.">
+          </app-form-input>
+
+          <app-form-input
+            class="form-group col-md-4" type="text" [group]="beachForm" label="Provincia" attributeName="province"
+            placeholder="Provincia" [maxLength]="2" [submitted]="submitted"
+            invalidFeedback="Campo richiesto, max 2 caratteri.">
+          </app-form-input>
+        </div>
+
+        <!-- Latitude, longitude and orientation -->
+        <div class="form-row">
+          <app-form-input class="form-group col-md-4" type="number" [group]="beachForm" label="Latitudine"
+                          attributeName="latitude" placeholder="Latitudine" [minValue]="-90" [maxValue]="90"
+                          [submitted]="submitted" invalidFeedback="Campo richiesto">
+          </app-form-input>
+          <app-form-input class="form-group col-md-4" type="number" [group]="beachForm" label="Longitudine"
+                          attributeName="longitude" placeholder="Longitudine" [minValue]="-90" [maxValue]="90"
+                          [submitted]="submitted" invalidFeedback="Campo richiesto">
+          </app-form-input>
+          <app-form-input-select class="form-group col-md-4" [values]="orient" attributeName="orientation"
+                                 label="Orientamento" [group]="beachForm">
+          </app-form-input-select>
+        </div>
+
+        <!-- Photo and preview -->
+        <div class="form-row">
+          <app-form-input
+            class="form-group col-md-7" type="text" [group]="beachForm" label="Foto"
+            attributeName="photo" placeholder="Indirizzo immagine foto" maxLength="255"
+            [submitted]="submitted" invalidFeedback="Campo richiesto">
+          </app-form-input>
+
+          <div class="form-group col-md-5 text-right" style="margin-top: 2rem;">
+            <div class="btn btn-outline-info cursor-pointer" (click)="previewPhoto(beachForm.value.photo)">Anteprima</div>
+            <div class="btn btn-outline-danger cursor-pointer ml-2" (click)="previewPhoto(null)">Nascondi</div>
+          </div>
+
+          <!-- Photo preview -->
+          <div class="form-group">
+            <div class="col-md-6">
+              <img *ngIf="pathPreview" [src]="pathPreview" class="img-fluid" alt="Anteprima spiaggia">
+            </div>
+          </div>
+        </div>
+
+        <h4 class="my-4">Altri servizi</h4>
+
+        <div class="form-row">
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="park"
+                                   label="Parcheggio">
+          </app-form-input-checkbox>
+
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4" attributeName="food_service"
+                                   label="Ristorazione">
+          </app-form-input-checkbox>
+
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-3" attributeName="lifeguard"
+                                   label="Salvataggio">
+          </app-form-input-checkbox>
+
+        </div>
+        <div class="form-row">
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="dogs_allowed"
+                                   label="Cani ammessi">
+          </app-form-input-checkbox>
+          <div class="form-check col-md-6 ">
+            <input class="form-check-input" type="checkbox" formControlName="summer_crowding" id="summer_crowding">
+            <label class="form-check-label" for="summer_crowding">Affollamento estivo</label>
+          </div>
+        </div>
+
+        <div class="form-row mt-4">
+          <button type="submit" class="btn btn-success ml-auto mr-1">Modifica</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

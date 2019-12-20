@@ -1,0 +1,26 @@
+.weather-icon {
+  padding: 0;
+}
+
+.weather-icon > img {
+  width: 50px;
+}
+
+div .rounded-circle {
+  width: 30px;
+  height: 30px;
+}
+
+div .rounded-circle p {
+  padding-top: 2px;
+  color: white;
+  font-weight: bold;
+}
+
+.table-element:hover {
+  background-color: lightblue;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

@@ -1,0 +1,42 @@
+<div *ngIf="beach" class="container">
+
+  <div class="row col-md-8 mt-4">
+    <div class="card w-100">
+      <div class="card-header">
+        <h1>
+          <a [routerLink]="['../../list']" class="mr-3">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          </a>
+          {{ beach.name }} - {{beach.city}} ({{beach.province}})
+        </h1>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <img [src]="beach.photo" alt="Spiaggia di {{beach.name}}" class="img-fluid">
+          </div>
+          <div class="col-md-6 details">
+            <div class="mb-0"><b>Meteo</b><img class="weather-icon" [src]="beach.weatherIcon"/></div>
+<!--            <div class="mb-3"><b class="mr-2">Traffico</b>-->
+<!--              <div class="rounded-circle d-inline-block {{getTrafficClass(beach.traffic)}}"><p>{{beach.traffic}}</p></div>-->
+<!--            </div>-->
+            <div class="my-3"><b class="mr-2">Orientamento</b>{{ beach.orientation }}</div>
+            <div class="my-3"><b class="mr-2">Posizione</b>{{beach.latitude}}, {{beach.longitude}}</div>
+          </div>
+          <div class="col-md-12 my-3">
+            <h3>Altre info e servizi:</h3>
+            <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.park)}}"></i>Parcheggio</span>
+            <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.food_service)}}"></i>Ristorazione</span>
+            <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.lifeguard)}}"></i>Bagnino</span>
+            <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.dogs_allowed)}}"></i>Cani ammessi</span>
+            <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.summer_crowding)}}"></i>Affollamento estivo</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-right">
+        <a [routerLink]="['../../edit', beach.id]" class="btn btn-success">EDIT</a>
+        <button class="btn btn-danger ml-2" type="submit" (click)="deleteBeach(beach.id)">DELETE</button>
+      </div>
+    </div>
+  </div>
+</div>
