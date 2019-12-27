@@ -1,6 +1,6 @@
-<div *ngIf="beach" class="container">
+<div class="container" style="padding-top: 30px;">
 
-  <div class="row col-md-8 mt-4">
+  <div class="row col-mx-auto">
     <div class="card w-100">
       <div class="card-header">
         <h1>
@@ -23,6 +23,7 @@
             <div class="my-3"><b class="mr-2">Orientamento</b>{{ beach.orientation }}</div>
             <div class="my-3"><b class="mr-2">Posizione</b>{{beach.latitude}}, {{beach.longitude}}</div>
           </div>
+         
           <div class="col-md-12 my-3">
             <h3>Altre info e servizi:</h3>
             <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.park)}}"></i>Parcheggio</span>
@@ -32,11 +33,20 @@
             <span class="mr-2"><i class="mr-1 fas {{getInfoClass(beach.summer_crowding)}}"></i>Affollamento estivo</span>
           </div>
         </div>
+
+        <input id="goMap" class="btn btn-primary" type="button" (click)="setCenter()" value="Vai">
+        
+        <div class="row">
+          <div id="map" class="map"></div>
+        </div>
+
       </div>
       <div class="card-footer text-right">
-        <a [routerLink]="['../../edit', beach.id]" class="btn btn-success">EDIT</a>
-        <button class="btn btn-danger ml-2" type="submit" (click)="deleteBeach(beach.id)">DELETE</button>
+        <a class="btn btn-primary" id="gMaps" href="http://www.google.com/maps/@{{beach.latitude}},{{beach.longitude}},15z" role="button">Indicazioni Stradali</a>
+        <a [routerLink]="['../../edit', beach.id]" id="edit" class="btn btn-success">EDIT</a>
+        <button class="btn btn-danger ml-2" type="submit" id="delete" (click)="deleteBeach(beach.id)">DELETE</button>
       </div>
     </div>
   </div>
 </div>
+<div>

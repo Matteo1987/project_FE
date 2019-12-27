@@ -7,13 +7,21 @@ import {Traffic} from '../../../shared/models/Traffic';
 import {WeatherService} from '../../../shared/services/weather.service';
 import {TrafficService} from '../../../shared/services/traffic.service';
 
+declare var ol: any;
+
 @Component({
   selector: 'app-beach-detail',
   templateUrl: './beach-detail.component.html',
   styleUrls: ['./beach-detail.component.css'],
 })
 export class BeachDetailComponent implements OnInit {
+  
+  map: any;
+
   beach: Beach;
+
+  latitude = 40;
+  longitude = 9;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +34,49 @@ export class BeachDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getBeachDetail(this.route.snapshot.params.id);
+
+    this.map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({       
+        center: ol.proj.fromLonLat([ this.longitude, this.latitude ]),
+        zoom: 8
+      })
+      
+    });
+  }
+  
+
+  setCenter() {
+    var lat=this.beach.latitude;
+    var lng=this.beach.longitude;
+
+    var view = this.map.getView();
+    view.setCenter(ol.proj.fromLonLat([lng, lat]));
+    view.setZoom(16);
+
+    var vectorLayer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [new ol.Feature({
+          geometry: new ol.geom.Point(ol.proj.transform([lng, lat], 'EPSG:4326', 'EPSG:3857')),
+        })]
+      }),
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 0.5],
+          scale: 0.1,
+          anchorXUnits: "fraction",
+          anchorYUnits: "fraction",
+          src: "assets/img/my-icon.png"
+        })
+      })
+    });
+    this.map.addLayer(vectorLayer);
+    
   }
 
   getBeachDetail(id) {
@@ -54,6 +105,25 @@ export class BeachDetailComponent implements OnInit {
         console.error(err);
       });
   };
+
+  addPoint(lat: number = this.beach.latitude, lng: number = this.beach.longitude) {
+    var vectorLayer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        features: [new ol.Feature({
+          geometry: new ol.geom.Point(ol.proj.transform([this.latitude, this.longitude ], 'EPSG:4326', 'EPSG:3857')),
+        })]
+      }),
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 0.5],
+          anchorXUnits: "fraction",
+          anchorYUnits: "fraction",
+          src: "assets/img/my-icon.png"
+        })
+      })
+    });
+    this.map.addLayer(vectorLayer);
+    }
 
 /*  getTraffic = () => {
     this.trafficService.getTraffic(this.beach.city)
