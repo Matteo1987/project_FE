@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BeachService} from '../../../shared/services/beaches.service';
-import {Beach} from '../../../shared/models/Beach';
+import {Beach, BeachType} from '../../../shared/models/Beach';
 import {CurrentWeather} from '../../../shared/models/Meteo';
 import {Traffic} from '../../../shared/models/Traffic';
 import {WeatherService} from '../../../shared/services/weather.service';
 import {TrafficService} from '../../../shared/services/traffic.service';
+import { APP_BASE_HREF } from '@angular/common';
 
 declare var ol: any;
 
@@ -16,12 +17,11 @@ declare var ol: any;
 })
 export class BeachDetailComponent implements OnInit {
   
-  map: any;
-
   beach: Beach;
-
+  beachtype = BeachType;
   latitude = 40;
   longitude = 9;
+  map: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,8 +33,6 @@ export class BeachDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBeachDetail(this.route.snapshot.params.id);
-
     this.map = new ol.Map({
       target: 'map',
       layers: [
@@ -48,8 +46,10 @@ export class BeachDetailComponent implements OnInit {
       })
       
     });
+    this.getBeachDetail(this.route.snapshot.params.id);
+
+
   }
-  
 
   setCenter() {
     var lat=this.beach.latitude;
@@ -57,7 +57,7 @@ export class BeachDetailComponent implements OnInit {
 
     var view = this.map.getView();
     view.setCenter(ol.proj.fromLonLat([lng, lat]));
-    view.setZoom(16);
+    view.setZoom(12);
 
     var vectorLayer = new ol.layer.Vector({
       source: new ol.source.Vector({
@@ -84,6 +84,7 @@ export class BeachDetailComponent implements OnInit {
       .subscribe((data: Beach) => {
         this.beach = data;
         this.getWeather();
+        this.setCenter();
         // this.getTraffic();
       });
   }
@@ -139,4 +140,10 @@ export class BeachDetailComponent implements OnInit {
   getWeatherIconPath = (icon: string): string => `https://www.weatherbit.io/static/img/icons/${icon}.png`;
   // getTrafficClass = (value: number) => value >= 80 ? 'bg-danger' : (value > 70 && value < 80 ? 'bg-warning' : 'bg-success');
   getInfoClass = (value: boolean) => value ? 'fa-check-circle text-success' : 'fa-times-circle text-danger';
+  getEnabledClass = (value: boolean) => value ? 'text-success' : '';
+  getBeachType = (value:string) => this.beachtype[value];
 }
+
+
+
+  
