@@ -57,7 +57,7 @@ export class BeachDetailComponent implements OnInit {
 
     var view = this.map.getView();
     view.setCenter(ol.proj.fromLonLat([lng, lat]));
-    view.setZoom(12);
+    view.setZoom(13);
 
     var vectorLayer = new ol.layer.Vector({
       source: new ol.source.Vector({

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Beach, Orientation} from '../../../shared/models/Beach';
+import {Beach, Orientation,BeachType} from '../../../shared/models/Beach';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BeachService} from '../../../shared/services/beaches.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -15,7 +15,7 @@ export class BeachEditComponent implements OnInit {
   beachForm: FormGroup;
   pathPreview = '';
   beach: Beach;
-
+  beachtypes = BeachType;
   submitted = false;
 
   constructor(
@@ -46,6 +46,14 @@ export class BeachEditComponent implements OnInit {
           food_service: [data.food_service],
           lifeguard: [data.lifeguard],
           dogs_allowed: [data.dogs_allowed],
+          tobacconist: [data.tobacconist],  
+          disabled_access: [data.disabled_access],
+          sunbed_umbrella: [data.disabled_access],
+          wifi: [data.wifi],
+          first_aid:[data.first_aid],
+          toilet:[data.toilet],
+          showers:[data.showers],
+          beach_type: [data.beach_type],
           summer_crowding: [data.summer_crowding],
           photo: [data.photo, Validators.required]
         });
@@ -64,7 +72,7 @@ export class BeachEditComponent implements OnInit {
 
     this.beachService.editBeach(beach)
       .subscribe(result => {
-        this.router.navigate(['../beaches/list']);
+        this.router.navigate([`../beaches/details/${this.beach.id}`]);
       }, error => {
         console.error(error);
       });

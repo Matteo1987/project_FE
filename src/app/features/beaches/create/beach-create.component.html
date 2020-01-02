@@ -49,6 +49,10 @@
           <app-form-input-select class="form-group col-md-4" [values]="orient" attributeName="orientation"
                                  label="Orientamento" [group]="beachForm">
           </app-form-input-select>
+        
+          <app-form-input-select class="form-group col-md-4" [values]="beachtypes" attributeName="beach_type"
+          label="Tipologia di spiaggia" [group]="beachForm">
+          </app-form-input-select>
         </div>
 
         <!-- Photo and preview -->
@@ -79,11 +83,11 @@
                                    label="Parcheggio">
           </app-form-input-checkbox>
 
-          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4" attributeName="food_service"
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="food_service"
                                    label="Ristorazione">
           </app-form-input-checkbox>
 
-          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-3" attributeName="lifeguard"
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="lifeguard"
                                    label="Salvataggio">
           </app-form-input-checkbox>
 
@@ -92,10 +96,35 @@
           <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="dogs_allowed"
                                    label="Cani ammessi">
           </app-form-input-checkbox>
-          <div class="form-check col-md-6 ">
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="tobacconist"
+          label="Tabacchino">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="summer_crowding"
+          label="Affollamento estivo">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="disabled_access"
+          label="Accesso ai disabili">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="sunbed_umbrella"
+          label="Ombrelloni e/o lettini">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="wifi"
+          label="Wi-fi">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="first_aid"
+          label="Kit primo soccorso">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="toilet"
+          label="Servizi igienici">
+          </app-form-input-checkbox>
+          <app-form-input-checkbox [group]="beachForm" class="form-check col-md-4 ml-4" attributeName="showers"
+          label="Docce fredde e/o calde">
+          </app-form-input-checkbox>
+          
+          <!-- <div class="form-check col-md-6 ">
             <input class="form-check-input" type="checkbox" formControlName="summer_crowding" id="summer_crowding">
             <label class="form-check-label" for="summer_crowding">Affollamento estivo</label>
-          </div>
+          </div> -->
         </div>
 
         <div class="form-row mt-4">

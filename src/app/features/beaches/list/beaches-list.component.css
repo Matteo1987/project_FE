@@ -24,3 +24,26 @@ div .rounded-circle p {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.container{
+  background-color: white;
+}
+
+.jumbotron{
+  height: 250px;
+color: white;
+ background: url(https://siviaggia.files.wordpress.com/2016/07/chia-sardegna-mare-piu-bello-guida-blu-t.jpg) no-repeat;
+ background-position-y: 10% ;
+}
+
+
+#newButton{
+  float: left;
+  margin-top: 13px;
+  margin-left: 10px;
+}
+
+#titolo{
+  float: right;
+  margin-top: 10px;
+}

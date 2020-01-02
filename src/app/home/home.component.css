@@ -1,5 +1,9 @@
-.row > div:hover {
-  cursor: pointer;
-  background-color: cornflowerblue;
-  color: white;
+
+
+body {
+  background-image: url("https://img2.10bestmedia.com/Images/Photos/352450/GettyImages-913753556_54_990x660.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }

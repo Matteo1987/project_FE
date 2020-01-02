@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Beach, Orientation} from '../../../shared/models/Beach';
+import {Beach, Orientation, BeachType} from '../../../shared/models/Beach';
 import {BeachService} from '../../../shared/services/beaches.service';
 import {Router} from '@angular/router';
 
@@ -8,11 +8,13 @@ import {Router} from '@angular/router';
   selector: 'app-beach-create',
   templateUrl: './beach-create.component.html',
   styleUrls: ['./beach-create.component.css']
+ 
 })
 export class BeachCreateComponent {
 
   orient = Orientation;
   beachForm: FormGroup;
+  beachtypes = BeachType;
   pathPreview = '';
 
   submitted = false;
@@ -34,6 +36,14 @@ export class BeachCreateComponent {
       lifeguard: [false],
       dogs_allowed: [false],
       summer_crowding: [false],
+      tobacconist: [false],   
+      disabled_access: [false],
+      sunbed_umbrella: [false],
+      wifi: [false],
+      first_aid: [false],
+      toilet: [false],
+      showers:[false],
+      beach_type: [false],
       photo: ['', Validators.required]
     });
   }

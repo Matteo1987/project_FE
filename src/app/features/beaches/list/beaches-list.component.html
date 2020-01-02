@@ -1,13 +1,16 @@
+
 <div class="container">
-  <h1 class="my-3">
-    Lista delle 10 spiagge migliori
-    <a [routerLink]="['../create']">
-      <i class="fas fa-plus-square" aria-hidden="true"></i>
-    </a>
-  </h1>
+  <div class="jumbotron">
+    <h1 id="titolo">
+      Le Migliori Spiagge Della Sardegna
+    </h1> 
+  </div>
+<hr>
+<div>
+  <button [routerLink]="['../create']" type="button" class="btn btn-outline-primary" id="newButton">Nuova Spiaggia</button>
 
   <div *ngIf="loaded" class="order-list my-3 text-right">
-    <h4 class="d-inline-block mr-2">Ordina per: </h4>
+    <h4 class="d-inline-block mr-2">Ordina per: </h4> 
     <form (change)="radioChange()">
       <div class="custom-control custom-radio custom-control-inline">
         <input type="radio" id="park" name="radio" class="custom-control-input" value="park"
@@ -19,6 +22,7 @@
                [(ngModel)]="radioValue">
         <label class="custom-control-label" for="summer_crowding">Affollamento</label>
       </div>
+      
 <!--      <div class="custom-control custom-radio custom-control-inline">-->
 <!--        <input type="radio" id="traffic" name="radio" class="custom-control-input" value="traffic" [(ngModel)]="radioValue">-->
 <!--        <label class="custom-control-label" for="traffic">Traffico</label>-->
@@ -26,11 +30,14 @@
       <div class="custom-control custom-radio custom-control-inline">
         <input type="radio" id="weather" name="radio" class="custom-control-input" value="weather" [(ngModel)]="radioValue">
         <label class="custom-control-label" for="weather">Meteo</label>
-      </div>
+      </div>     
     </form>
   </div>
+  
+
 
   <table *ngIf="loaded && beaches.length > 0" class="table">
+
     <thead>
     <tr class="text-center">
       <th>Nome</th>
@@ -58,6 +65,7 @@
     </tr>
     </tbody>
   </table>
+</div>
 
   <h3 *ngIf="loaded && beaches.length === 0">Non ci sono ancora spiagge! Provvedi ad aggiungerne.</h3>
 

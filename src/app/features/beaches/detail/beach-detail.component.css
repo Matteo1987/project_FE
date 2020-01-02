@@ -20,19 +20,12 @@ img {
 
 #map{
   width: 100%;
-  height: 500px;
-  padding-left: 5%;
-  padding-right: 5%;
+  height: 85%;
 }
 
 #goMap{
   float: right;
   padding-right: 10px;
-}
-
-#gMaps{
-  float: right;
-  margin-right: 10px;
 }
 
 #edit{
