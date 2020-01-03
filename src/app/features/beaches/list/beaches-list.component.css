@@ -29,13 +29,15 @@ div .rounded-circle p {
   background-color: white;
 }
 
-.jumbotron{
-  height: 250px;
+.background{
+height: 250px;
 color: white;
- background: url(https://siviaggia.files.wordpress.com/2016/07/chia-sardegna-mare-piu-bello-guida-blu-t.jpg) no-repeat;
- background-position-y: 10% ;
-}
+background: url(https://siviaggia.files.wordpress.com/2016/07/chia-sardegna-mare-piu-bello-guida-blu-t.jpg) no-repeat;
 
+background-size: cover;
+background-attachment: fixed;
+background-position: center;
+}
 
 #newButton{
   float: left;

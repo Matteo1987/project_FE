@@ -1,14 +1,12 @@
 
+<div class="background">
+  <h1 id="titolo">
+    Le Migliori Spiagge Della Sardegna
+  </h1> 
+</div>
 <div class="container">
-  <div class="jumbotron">
-    <h1 id="titolo">
-      Le Migliori Spiagge Della Sardegna
-    </h1> 
-  </div>
 <hr>
 <div>
-  <button [routerLink]="['../create']" type="button" class="btn btn-outline-primary" id="newButton">Nuova Spiaggia</button>
-
   <div *ngIf="loaded" class="order-list my-3 text-right">
     <h4 class="d-inline-block mr-2">Ordina per: </h4> 
     <form (change)="radioChange()">
