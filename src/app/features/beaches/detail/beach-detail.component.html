@@ -79,7 +79,7 @@
                   <i class="fas fa-user-circle  fa-stack-2x {{getEnabledClass(beach.summer_crowding)}}" title="{{beach.summer_crowding? 'Spaggia affollata' : 'Spaggia affollata'}}"></i>
                   <i class="fas fa-ban fa-stack-2x text-danger" *ngIf="!beach.summer_crowding" title="{{beach.summer_crowding ? 'Spaggia affollata' : 'Spaggia non affollata'}}"></i>
                 </span> 
-                </span>
+              </span>
             
       </div>
 
@@ -102,15 +102,31 @@
       
           <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
             <div class="card-body">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d1562875.8516499593!2d8.045915435458591!3d40.086744494922385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d39.219286!2d9.0989074!4m3!3m2!1d40.960499999999996!2d9.58081!5e0!3m2!1sit!2sit!4v1577720297699!5m2!1sit!2sit" width="100%" height="500px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>  
+              <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d1562875.8516499593!2d8.045915435458591!3d40.086744494922385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d39.219286!2d9.0989074!4m3!3m2!1d40.960499999999996!2d9.58081!5e0!3m2!1sit!2sit!4v1577720297699!5m2!1sit!2sit" width="100%" height="500px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>   -->
+             <!-- questa è la prova fatta da me<iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw&origin=Oslo+Norway&destination={{beach.name}}">
+              
+              width="100%" 
+              height="500px"
+               frameborder="0" 
+               style="border:0";
+               allowfullscreen="";
+              API KEY NUOVA AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw 
+             </iframe> -->
+             <iframe [src]="mapDestinationUrl"   width="600"
+             height="450"
+             frameborder="0" style="border:0"
+             allowfullscreen></iframe>
+           
             </div>
           </div>
         </div>
-      <div class="card-footer text-right">
+          <div class="card-footer text-right">
        <!-- <a class="btn btn-primary" id="gMaps" href="https://www.google.com/maps/dir/?api=1&destination={{beach.latitude}},{{beach.longitude}}" role="button">Indicazioni Stradali</a> -->
         <a [routerLink]="['../../edit', beach.id]" id="edit" class="btn btn-success">EDIT</a>
         <button class="btn btn-danger ml-2 mb-3" type="submit" id="delete" (click)="deleteBeach(beach.id)">DELETE</button>
       </div>
+          </div>
+
       
     </div>
   </div>
