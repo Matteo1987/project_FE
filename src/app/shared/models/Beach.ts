@@ -36,8 +36,8 @@ export const Orientation = {
 
 export const BeachType = {
   
-  fine_sand: "Sabbia fine",
-  rough_sand : "Sabbia grossa",
-  partially_rocky : "Parzialmente rocciosa",
-  totally_rocky: "Totalmente rocciosa"
+  fine_sand: "sabbia fine",
+  rough_sand : "sabbia grossa",
+  partially_rocky : "parzialmente rocciosa",
+  totally_rocky: "totalmente rocciosa"
 };
