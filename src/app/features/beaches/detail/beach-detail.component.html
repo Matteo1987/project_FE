@@ -152,17 +152,35 @@
             </div>
           </div>
         </div>
-          <div class="card-footer text-right">
-       <!-- <a class="btn btn-primary" id="gMaps" href="https://www.google.com/maps/dir/?api=1&destination={{beach.latitude}},{{beach.longitude}}" role="button">Indicazioni Stradali</a> -->
-        <a [routerLink]="['../../edit', beach.id]" id="edit" class="btn btn-success">EDIT</a>
-        <button class="btn btn-danger ml-2 mb-3" type="submit" id="delete" (click)="deleteBeach(beach.id)">DELETE</button>
+
+
+
       </div>
+
+
+        <div class="accordion" id="accordionAdmin">
+          <div class="card">
+            <div class="card-header" id="headingAdmin">
+              <h2 class="mb-3 text-right">
+                <button class="btn btn-outline-primary" type="button" id="admin" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
+                  Area amministrazione
+                </button>
+              </h2>
+            </div>
+        
+            <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionAdmin">
+              <div class="card-body">
+                <!-- <div class="card-footer text-right"> -->
+            <!-- <a class="btn btn-primary" id="gMaps" href="https://www.google.com/maps/dir/?api=1&destination={{beach.latitude}},{{beach.longitude}}" role="button">Indicazioni Stradali</a> -->
+              <a [routerLink]="['../../edit', beach.id]" id="edit" class="btn btn-success">EDIT</a>
+              <button class="btn btn-danger ml-2 mb-3" type="submit" id="delete" (click)="deleteBeach(beach.id)">DELETE</button>
+            </div>
           
 
       
     </div>
   </div>
-</div>
+        </div>
 
 
 
