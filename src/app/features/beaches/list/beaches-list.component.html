@@ -1,71 +1,164 @@
+<div class="w3-container">
+  <nav class="navbar navbar-default navbar-expand-lg sticky  navbar-light ">
+    <a class="navbar-brand" style="color:black;" href="#">BeachAdvisor </a>
 
-<div class="background">
-  <h1 id="titolo">
-    Le Migliori Spiagge Della Sardegna
-  </h1> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item ">
+          <a class="nav-link" style="color:black" [routerLink]="['/beaches/list']">Lista spiagge<span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="color:black" href="#" id="navbarDropdownMenuLink" role="button"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modalità Admin</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+            <a class="dropdown-item" [routerLink]="['/beaches/create']" href="#">Aggiungi spiaggia</a>
+
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </nav>
+
 </div>
-<div class="container">
-<hr>
-<div>
-  <div *ngIf="loaded" class="order-list my-3 text-right">
-    <h4 class="d-inline-block mr-2">Ordina per: </h4> 
-    <form (change)="radioChange()">
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="park" name="radio" class="custom-control-input" value="park"
-               [(ngModel)]="radioValue">
-        <label class="custom-control-label" for="park">Parcheggio</label>
+<div class="w3-container">
+  <hr>
+  <div>
+    <div *ngIf="loaded" class="order-list my-3 text-right">
+      <h4 class="d-inline-block mr-2">Ordina per: </h4>
+      <form (change)="radioChange()">
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="park" name="radio" class="custom-control-input" value="park" [(ngModel)]="radioValue">
+          <label class="custom-control-label" for="park">Parcheggio</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="summer_crowding" name="radio" class="custom-control-input" value="summer_crowding"
+            [(ngModel)]="radioValue">
+          <label class="custom-control-label" for="summer_crowding">Affollamento</label>
+        </div>
+
+        <!--      <div class="custom-control custom-radio custom-control-inline">-->
+        <!--        <input type="radio" id="traffic" name="radio" class="custom-control-input" value="traffic" [(ngModel)]="radioValue">-->
+        <!--        <label class="custom-control-label" for="traffic">Traffico</label>-->
+        <!--      </div>-->
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="weather" name="radio" class="custom-control-input" value="weather"
+            [(ngModel)]="radioValue">
+          <label class="custom-control-label" for="weather">Meteo</label>
+        </div>
+      </form>
+    </div>
+
+
+
+    <div class="row my-6">
+      <div class="mx-auto">
+    
+          <div *ngFor="let beach of beaches.slice(0, 10)" class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+
+              <div class="col-md-4">
+                <img src="{{beach.photo}}" alt="{{ beach.name }}" class="card-img">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ beach.name }}</h5>
+                  <p class="card-text">{{ beach.city + ' (' + beach.province + ')' }}</p>
+                  <p class="card-text"><span class="weather-icon"><img [src]="beach.weatherIcon" alt="meteo"></span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+       
       </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="summer_crowding" name="radio" class="custom-control-input" value="summer_crowding"
-               [(ngModel)]="radioValue">
-        <label class="custom-control-label" for="summer_crowding">Affollamento</label>
-      </div>
-      
-<!--      <div class="custom-control custom-radio custom-control-inline">-->
-<!--        <input type="radio" id="traffic" name="radio" class="custom-control-input" value="traffic" [(ngModel)]="radioValue">-->
-<!--        <label class="custom-control-label" for="traffic">Traffico</label>-->
-<!--      </div>-->
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" id="weather" name="radio" class="custom-control-input" value="weather" [(ngModel)]="radioValue">
-        <label class="custom-control-label" for="weather">Meteo</label>
-      </div>     
-    </form>
+
+
+    </div>
+
+
+
+
+
+    <h3 *ngIf="loaded && beaches.length === 0">Non ci sono ancora spiagge! Provvedi ad aggiungerne.</h3>
+
+    <h3 *ngIf="!loaded">Loading...</h3>
   </div>
-  
 
-
-  <table *ngIf="loaded && beaches.length > 0" class="table">
-
-    <thead>
-    <tr class="text-center">
-      <th>Nome</th>
-      <th>Città</th>
-      <th>Posizione</th>
-      <th>Orientamento</th>
-      <th>Parcheggio</th>
-      <th>Affollamento</th>
-<!--      <th>Traffico</th>-->
-      <th>Meteo</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="table-element cursor-pointer text-center" *ngFor="let beach of beaches.slice(0, 10)" (click)="goToDetails(beach.id)">
-      <td>{{ beach.name }}</td>
-      <td>{{ beach.city + ' (' + beach.province + ')' }}</td>
-      <td>{{ beach.latitude + ', ' + beach.longitude }}</td>
-      <td><i class="fas fa-2x {{ getOrientationArrow(beach.orientation) }}"></i></td>
-      <td class="text-center"><i class="fas fa-2x {{getInfoClass(beach.park)}}"></i></td>
-      <td><i class="fas fa-2x {{getInfoClass(beach.summer_crowding)}}"></i></td>
-<!--      <td>-->
-<!--        <div class="rounded-circle m-auto text-center {{getTrafficClass(beach.traffic)}}"><p>{{beach.traffic}}</p></div>-->
-<!--      </td>-->
-      <td class="weather-icon"><img [src]="beach.weatherIcon" alt="meteo"></td>
-    </tr>
-    </tbody>
-  </table>
 </div>
 
-  <h3 *ngIf="loaded && beaches.length === 0">Non ci sono ancora spiagge! Provvedi ad aggiungerne.</h3>
 
-  <h3 *ngIf="!loaded">Loading...</h3>
-</div>
+<footer>
+  <div class="footer">
+    <div class="contain">
+      <div class="col">
+        <h1>Azienda</h1>
+        <ul>
+          <li>Chi siamo</li>
+          <li>Obbiettivi</li>
+          <li>Servizi</li>
+
+        </ul>
+      </div>
+      <div class="col">
+        <h1>Prodotti</h1>
+        <ul>
+          <li>I nostri prodotti</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h1>Contatti</h1>
+        <ul>
+          <li>Webmail</li>
+          <li>Telefono</li>
+          <li>Mappa del sito</li>
+
+        </ul>
+      </div>
+      <div class="col">
+        <h1>Supporto</h1>
+        <ul>
+          <li>Web live chat</li>
+          <li>Apri ticket</li>
+        </ul>
+      </div>
+      <div class="col social">
+        <h1>Social</h1>
+        <ul>
+          <li><img src="https://svgshare.com/i/H5y.svg" width="32" style="width: 32px;"></li>
+          <li><img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png"
+              width="32" style="width: 32px;"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png"
+              width="32" style="width: 32px;"></li>
+          <li><img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" width="32"
+              style="width: 32px;"></li>
+          <li><img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1024px-Telegram_logo.svg.png"
+              width="32" style="width: 32px;"></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h1>Info</h1>
+        <ul>
+          <li>Note Legali & Privacy | Info Cookies</li>
+          <li>Sede legale: Viale La Playa 15, 09123 Cagliari</li>
+          <li>P.I. 02468516546</li>
+        </ul>
+      </div>
+
+
+
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <!-- END OF FOOTER -->
+</footer>

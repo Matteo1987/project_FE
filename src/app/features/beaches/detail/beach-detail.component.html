@@ -1,4 +1,27 @@
-<div class="container"  style="padding-top: 30px;">
+<div class="w3-container"  style="padding-top: 30px;">
+  <nav class="navbar navbar-default navbar-expand-lg sticky  navbar-light " >
+    <a class="navbar-brand" style="color:black;" href="#">BeachAdvisor </a>
+    
+    <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+         <li class="nav-item ">
+            <a class="nav-link" style="color:black" [routerLink]="['/beaches/list']">Lista spiagge<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" style="color:black" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modalità Admin</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              
+              <a class="dropdown-item" [routerLink]="['/beaches/create']" href="#">Aggiungi spiaggia</a>
+              
+             </div>
+  
+          </li>
+        </ul>
+    </div>
+  </nav>
 
   <div class="row col-mx-auto">
     <div class="card w-100">
@@ -113,74 +136,150 @@
             </span>
       </div>
 
-    </div>         
-      </div>
-    </div>         
-      
-        
-        
-        
-        
+     
 
+    </div>    
+    <div class="row">
       <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0 text-center">
-              <button class="btn btn-outline-primary" type="button" id="mapsButton" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Indicazioni Stradali
-              </button>
-            </h2>
-          </div>
-      
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-              <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d1562875.8516499593!2d8.045915435458591!3d40.086744494922385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d39.219286!2d9.0989074!4m3!3m2!1d40.960499999999996!2d9.58081!5e0!3m2!1sit!2sit!4v1577720297699!5m2!1sit!2sit" width="100%" height="500px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>   -->
-             <!-- questa è la prova fatta da me<iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw&origin=Oslo+Norway&destination={{beach.name}}">
-              
-              width="100%" 
-              height="500px"
-               frameborder="0" 
-               style="border:0";
-               allowfullscreen="";
-              API KEY NUOVA AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw 
-             </iframe> -->
-             <iframe [src]="mapDestinationUrl"   width="600"
-             height="450"
-             frameborder="0" style="border:0"
-             allowfullscreen></iframe>
-           
-            </div>
-          </div>
-        </div>
-
-
-
-      </div>
-
-
-        <div class="accordion" id="accordionAdmin">
-          <div class="card">
-            <div class="card-header" id="headingAdmin">
-              <h2 class="mb-3 text-right">
-                <button class="btn btn-outline-primary" type="button" id="admin" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
-                  Area amministrazione
-                </button>
-              </h2>
-            </div>
-        
-            <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionAdmin">
-              <div class="card-body">
-                <!-- <div class="card-footer text-right"> -->
-            <!-- <a class="btn btn-primary" id="gMaps" href="https://www.google.com/maps/dir/?api=1&destination={{beach.latitude}},{{beach.longitude}}" role="button">Indicazioni Stradali</a> -->
-              <a [routerLink]="['../../edit', beach.id]" id="edit" class="btn btn-success">EDIT</a>
-              <button class="btn btn-danger ml-2 mb-3" type="submit" id="delete" (click)="deleteBeach(beach.id)">DELETE</button>
-            </div>
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h2 class="mb-0 text-center">
+                  <button class="btn btn-outline-primary" type="button" id="mapsButton" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Indicazioni Stradali
+                  </button>
+                </h2>
+              </div>
           
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m24!1m12!1m3!1d1562875.8516499593!2d8.045915435458591!3d40.086744494922385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m9!3e6!4m3!3m2!1d39.219286!2d9.0989074!4m3!3m2!1d40.960499999999996!2d9.58081!5e0!3m2!1sit!2sit!4v1577720297699!5m2!1sit!2sit" width="100%" height="500px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>   -->
+                 <!-- questa è la prova fatta da me<iframe src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw&origin=Oslo+Norway&destination={{beach.name}}">
+                  
+                  width="100%" 
+                  height="500px"
+                   frameborder="0" 
+                   style="border:0";
+                   allowfullscreen="";
+                  API KEY NUOVA AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw 
+                 </iframe> -->
+                 <iframe [src]="mapDestinationUrl"   width="600"
+                 height="450"
+                 frameborder="0" style="border:0"
+                 allowfullscreen></iframe>
+               
+                </div>
+              </div>
+            </div>
+    
+    
+    
+          </div>
+    </div>
+
+    <div class="row">
+      <div class="col- 12 accordion" id="accordionAdmin">
+              <div class="card">
+                <div class="card-header" id="headingAdmin">
+                  <h2 class="mb-3 text-right">
+                    <button class="btn btn-outline-primary" type="button" id="admin" data-toggle="collapse" data-target="#collapseAdmin" aria-expanded="true" aria-controls="collapseAdmin">
+                      Area amministrazione
+                    </button>
+                  </h2>
+                </div>
+            
+                <div id="collapseAdmin" class="collapse" aria-labelledby="headingAdmin" data-parent="#accordionAdmin">
+                  <div class="card-body">
+                    <!-- <div class="card-footer text-right"> -->
+                <!-- <a class="btn btn-primary" id="gMaps" href="https://www.google.com/maps/dir/?api=1&destination={{beach.latitude}},{{beach.longitude}}" role="button">Indicazioni Stradali</a> -->
+                  <a [routerLink]="['../../edit', beach.id]" id="edit" class="btn btn-success">EDIT</a>
+                  <button class="btn btn-danger ml-2 mb-3" type="submit" id="delete" (click)="deleteBeach(beach.id)">DELETE</button>
+                </div>
+              
+    
+          
+        </div>
+      </div>
+            </div>
+    </div>     
+      </div>
+    </div>         
+      
+        
+        
+        
+        
 
       
+
+
+        
+
+
+</div>
+<footer>
+  <div class="footer">
+    <div class="contain">
+    <div class="col">
+      <h1>Azienda</h1>
+      <ul>
+        <li>Chi siamo</li>
+        <li>Obbiettivi</li>
+        <li>Servizi</li>
+        
+        </ul>
     </div>
+    <div class="col">
+      <h1>Prodotti</h1>
+      <ul>
+        <li>I nostri prodotti</li>
+      </ul>
+    </div>
+    
+    <div class="col">
+      <h1>Contatti</h1>
+      <ul>
+        <li>Webmail</li>
+        <li>Telefono</li>
+        <li>Mappa del sito</li>
+        
+      </ul>
+    </div>
+    <div class="col">
+      <h1>Supporto</h1>
+      <ul>
+        <li>Web live chat</li>
+        <li>Apri ticket</li>
+      </ul>
+    </div>
+    <div class="col social">
+      <h1>Social</h1>
+      <ul>
+        <li><img src="https://svgshare.com/i/H5y.svg" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1024px-Telegram_logo.svg.png" width="32" style="width: 32px;"></li>
+        </ul>
+    </div>
+
+    <div class="col">
+      <h1>Info</h1>
+      <ul>
+        <li>Note Legali & Privacy | Info Cookies</li>
+        <li>Sede legale: Viale La Playa 15, 09123 Cagliari</li>
+        <li>P.I. 02468516546</li>
+      </ul>
+    </div>
+      
+
+    
+    
+  <div class="clearfix"></div>
   </div>
-        </div>
+</div>
+  <!-- END OF FOOTER -->
+  </footer>
+
 
 
 
