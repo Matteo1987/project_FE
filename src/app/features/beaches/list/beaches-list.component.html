@@ -60,17 +60,18 @@
     <div class="row my-6">
       <div class="mx-auto">
     
-          <div *ngFor="let beach of beaches.slice(0, 10)" class="card mb-3" style="max-width: 540px;">
+          <div *ngFor="let beach of beaches.slice(0, 10)" class="card mb-3 cursor-pointer" style="max-width: 60%;" (click)="goToDetails(beach.id)">
             <div class="row no-gutters">
 
               <div class="col-md-4">
-                <img src="{{beach.photo}}" alt="{{ beach.name }}" class="card-img">
+                <img src="{{beach.photo}}" alt="{{ beach.name }}" class="card-img card-img-cropped">
               </div>
               <div class="col-md-8">
                 <div class="card-body">
                   <h5 class="card-title">{{ beach.name }}</h5>
                   <p class="card-text">{{ beach.city + ' (' + beach.province + ')' }}</p>
-                  <p class="card-text"><span class="weather-icon"><img [src]="beach.weatherIcon" alt="meteo"></span></p>
+              
+                  <div class="weather-icon"><img [src]="beach.weatherIcon" alt="meteo"></div>
                 </div>
               </div>
             </div>
