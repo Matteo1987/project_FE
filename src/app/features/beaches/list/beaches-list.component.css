@@ -49,3 +49,9 @@ background-position: center;
   float: right;
   margin-top: 10px;
 }
+
+img.centered-and-cropped{
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}

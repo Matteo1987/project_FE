@@ -1,7 +1,7 @@
 
 <div class="background">
   <h1 id="titolo">
-    Le Migliori Spiagge Della Sardegna
+    Le Migliori Spiagge Della Sardegna <!--- centrare il titolo -->
   </h1> 
 </div>
 <div class="container">
@@ -34,10 +34,11 @@
   
 
 
-  <table *ngIf="loaded && beaches.length > 0" class="table">
+  <table *ngIf="loaded && beaches.length > 0" class="table"> <!--- table a tutta larghezza -->
 
     <thead>
-    <tr class="text-center">
+    <tr class="text-center"> 
+      <th></th>
       <th>Nome</th>
       <th>Città</th>
       <th>Posizione</th>
@@ -50,6 +51,7 @@
     </thead>
     <tbody>
     <tr class="table-element cursor-pointer text-center" *ngFor="let beach of beaches.slice(0, 10)" (click)="goToDetails(beach.id)">
+      <td><img src="{{beach.photo}}" alt="{{ beach.name }}" class="centered-and-cropped"> </td>
       <td>{{ beach.name }}</td>
       <td>{{ beach.city + ' (' + beach.province + ')' }}</td>
       <td>{{ beach.latitude + ', ' + beach.longitude }}</td>
