@@ -1,13 +1,31 @@
-<div class="container">
-  <h2 class="my-4">
-    <a [routerLink]="['../']">
-      <i class="fas fa-arrow-circle-left"></i>
-    </a>
-    Aggiungi una nuova spiaggia
-  </h2>
+<div class="w3-container">
+  
+  <nav class="navbar navbar-default navbar-expand-lg sticky  navbar-light " >
+    <a class="navbar-brand" style="color:black;" href="#">BeachAdvisor </a>
+    
+    <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+         <li class="nav-item ">
+            <a class="nav-link" style="color:black" [routerLink]="['/beaches/list']">Lista spiagge<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" style="color:black" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Modalità Admin</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              
+              <a class="dropdown-item" [routerLink]="['/beaches/create']" href="#">Aggiungi spiaggia</a>
+              
+             </div>
+  
+          </li>
+        </ul>
+    </div>
+  </nav>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md">
       <form class="card p-3" [formGroup]="beachForm" (ngSubmit)="insertBeach()">
 
         <!-- Name and province -->
@@ -134,3 +152,66 @@
     </div>
   </div>
 </div>
+<footer>
+  <div class="footer">
+    <div class="contain">
+    <div class="col">
+      <h1>Azienda</h1>
+      <ul>
+        <li>Chi siamo</li>
+        <li>Obbiettivi</li>
+        <li>Servizi</li>
+        
+        </ul>
+    </div>
+    <div class="col">
+      <h1>Prodotti</h1>
+      <ul>
+        <li>I nostri prodotti</li>
+      </ul>
+    </div>
+    
+    <div class="col">
+      <h1>Contatti</h1>
+      <ul>
+        <li>Webmail</li>
+        <li>Telefono</li>
+        <li>Mappa del sito</li>
+        
+      </ul>
+    </div>
+    <div class="col">
+      <h1>Supporto</h1>
+      <ul>
+        <li>Web live chat</li>
+        <li>Apri ticket</li>
+      </ul>
+    </div>
+    <div class="col social">
+      <h1>Social</h1>
+      <ul>
+        <li><img src="https://svgshare.com/i/H5y.svg" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1024px-Instagram_logo_2016.svg.png" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1024px-WhatsApp.svg.png" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg" width="32" style="width: 32px;"></li>
+        <li><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1024px-Telegram_logo.svg.png" width="32" style="width: 32px;"></li>
+        </ul>
+    </div>
+
+    <div class="col">
+      <h1>Info</h1>
+      <ul>
+        <li>Note Legali & Privacy | Info Cookies</li>
+        <li>Sede legale: Viale La Playa 15, 09123 Cagliari</li>
+        <li>P.I. 02468516546</li>
+      </ul>
+    </div>
+      
+
+    
+    
+  <div class="clearfix"></div>
+  </div>
+</div>
+  <!-- END OF FOOTER -->
+  </footer>
