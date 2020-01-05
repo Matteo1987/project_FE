@@ -7,6 +7,7 @@ import {Traffic} from '../../../shared/models/Traffic';
 import {WeatherService} from '../../../shared/services/weather.service';
 import {TrafficService} from '../../../shared/services/traffic.service';
 import { APP_BASE_HREF } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 declare var ol: any;
 
@@ -16,14 +17,17 @@ declare var ol: any;
   styleUrls: ['./beach-detail.component.css'],
 })
 export class BeachDetailComponent implements OnInit {
+  [x: string]: any;
   
   beach: Beach;
   beachtype = BeachType;
   latitude = 40;
   longitude = 9;
   map: any;
+  mapDestinationUrl: SafeResourceUrl;
 
   constructor(
+    private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
     private router: Router,
     private beachService: BeachService,
@@ -85,6 +89,7 @@ export class BeachDetailComponent implements OnInit {
         this.beach = data;
         this.getWeather();
         this.setCenter();
+        this.mapDestinationUrl = this.getMapIframeSrc();
         // this.getTraffic();
       });
   }
@@ -142,7 +147,9 @@ export class BeachDetailComponent implements OnInit {
   getInfoClass = (value: boolean) => value ? 'fa-check-circle text-success' : 'fa-times-circle text-danger';
   getEnabledClass = (value: boolean) => value ? 'text-success' : '';
   getBeachType = (value:string) => this.beachtype[value];
-}
+  getMapIframeSrc = () => this.sanitizer.bypassSecurityTrustResourceUrl(`https:www.google.com/maps/embed/v1/directions?key=AIzaSyDBl453JPQafg3ImRdNI01PYkxRrzVSDQw&origin=Cagliari+Italy&destination=${this.beach.latitude},${this.beach.longitude}`);
+  
+  }
 
 
 

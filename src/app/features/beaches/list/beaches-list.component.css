@@ -163,3 +163,8 @@ background-position: center;
     width: 100%;
   }
 }
+img.centered-and-cropped{
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
